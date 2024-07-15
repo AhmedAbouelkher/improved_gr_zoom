@@ -1,10 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.webcare.zoom">
+  package="com.webcare.zoom"
+  xmlns:tools="http://schemas.android.com/tools">
 
   <!-- To learn more about configuring Key `android:hardwareAccelerated`: 
     https://devforum.zoom.us/t/android-zoom-sdk-video-not-displaying/87876/2 -->
 
-  <application>
+  <application
+    android:allowBackup="true"
+    tools:replace="android:allowBackup">
     <activity
       android:name="com.webcare.zoom.MyMeetingActivity"
       android:exported="false"

@@ -2,7 +2,7 @@ import "dart:convert";
 import "dart:core";
 import "dart:io";
 
-import "package:flutter/foundation.dart";
+import "package:flutter/src/foundation/print.dart" show debugPrint;
 
 void main(List<String> args) async {
   var location = Platform.script.toString();
@@ -21,7 +21,7 @@ void main(List<String> args) async {
     ].join(Platform.pathSeparator);
     final jsonString = File(packageConfigPath).readAsStringSync();
     final packages = jsonDecode(jsonString) as Map<String, dynamic>;
-    final packageList = packages["packages"] as List<Map>;
+    final packageList = packages["packages"] as List;
     String? zoomFileUri;
     for (final package in packageList) {
       if (package["name"] == "gr_zoom") {
@@ -71,8 +71,7 @@ void main(List<String> args) async {
 }
 
 Future<void> checkAndDownloadSDK(String location) async {
-  final iosSDKFile =
-      "$location/ios/MobileRTC.xcframework/ios-arm64/MobileRTC.framework/MobileRTC";
+  final iosSDKFile = "$location/ios/MobileRTC.xcframework/ios-arm64/MobileRTC.framework/MobileRTC";
   bool exists = await File(iosSDKFile).exists();
 
   if (!exists) {
